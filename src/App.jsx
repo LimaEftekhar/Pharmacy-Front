@@ -1,14 +1,66 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+import NotFound from "./pages/NotFound";
+import OAuthSuccess from "./pages/OAuthSuccess";
+import useAuthStore from "./store/useAuthStore";
+
+// import CreateChallengeModal from "./components/CreateChallenge";
+
+import RouteGuard from "./components/RouteGuard";
+import { Toaster } from "react-hot-toast";
 
 function App() {
+  const checkAuth = useAuthStore((state) => state.checkAuth);
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold text-blue-600 mb-4">
-        Tailwind Inline Works!
-      </h1>
-      <button className="px-6 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600">
-        Click Me
-      </button>
-    </div>
+    <>
+      <Toaster position="top-right" containerStyle={{ zIndex: 9999 }} />
+      <Router>
+        <Routes>
+          <Route
+            path="/login"
+            element={
+              <RouteGuard requiresAuth={false}>
+                <Login />
+              </RouteGuard>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <RouteGuard requiresAuth={false}>
+                <Register />
+              </RouteGuard>
+            }
+          />
+          <Route path="/oauth-success" element={<OAuthSuccess />} />
+          <Route
+            path="/dashboard"
+            element={
+              <RouteGuard requiresAuth={true}>
+                <Dashboard />
+              </RouteGuard>
+            }
+          />
+          {/* <Route
+            path="/challenge/new"
+            element={
+              <RouteGuard requiresAuth={true}>
+                <CreateChallengeModal />
+              </RouteGuard>
+            }
+          /> */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
