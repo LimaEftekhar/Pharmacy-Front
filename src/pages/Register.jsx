@@ -34,7 +34,7 @@ const Register = () => {
         email: email.trim().toLowerCase(),
         password,
       });
-      navigate('/dashboard', { replace: true }); 
+      navigate('/login', { replace: true }); 
     } catch (err) {
       console.error('Register failed:', err.message);
     }
