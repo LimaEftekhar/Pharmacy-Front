@@ -86,7 +86,7 @@ export default function MedicineDetails({ onClose, onUpdated }) {
             <div className="max-h-[60vh] overflow-y-auto rounded-xl border border-gray-200 shadow-inner">
               {filteredMedicines.length > 0 ? (
               <table className="min-w-full border-collapse">
-                <thead className="bg-gray-100 sticky top-0 text-gray-700">
+                <thead className="bg-[#2563eb] sticky top-0 text-white">
                   <tr>
                     <th className="px-4 py-3 text-left font-semibold text-sm">
                       Code
