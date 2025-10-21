@@ -24,8 +24,9 @@ const useAuthStore = create((set) => ({
       );
       set({
         user: res.data.user,
-        token: res.data.token,
-        isAuthenticated: true,
+        // token: res.data.token,
+        token: null,
+        // isAuthenticated: true,
         isLoading: false,
       });
       localStorage.setItem("authToken", res.data.token);

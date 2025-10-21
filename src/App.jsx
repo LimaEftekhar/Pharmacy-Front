@@ -55,14 +55,7 @@ function App() {
               </RouteGuard>
             }
           />
-          {/* <Route
-            path="/challenge/new"
-            element={
-              <RouteGuard requiresAuth={true}>
-                <CreateChallengeModal />
-              </RouteGuard>
-            }
-          /> */}
+        
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
