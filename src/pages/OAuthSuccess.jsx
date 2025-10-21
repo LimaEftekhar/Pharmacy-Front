@@ -6,7 +6,6 @@ const OAuthSuccess = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { setOAuthUser, clearError } = useAuthStore();
-  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const handleOAuth = async () => {
@@ -39,14 +38,6 @@ const OAuthSuccess = () => {
 
     handleOAuth();
   }, [navigate, searchParams, setOAuthUser, clearError]);
-
-  // if (loading) {
-  //   return (
-  //     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-200 via-gray-100 to-gray-300">
-  //       <div className="text-lg text-black">Processing Google login...</div>
-  //     </div>
-  //   );
-  // }
 
   return null;
 };

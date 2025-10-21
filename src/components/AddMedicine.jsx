@@ -2,7 +2,6 @@ import { React, useState } from "react";
 import { postData } from "../util/index";
 
 const AddMedicineModal = ({ onClose, onMedicineAdded }) => {
-  // const navigate = useNavigate();
   const [medicineCode, setMedicineCode] = useState("");
   const [name, setName] = useState("");
   const [costPrice, setCostPrice] = useState("");
@@ -11,8 +10,6 @@ const AddMedicineModal = ({ onClose, onMedicineAdded }) => {
   const [expirationDate, setExpirationDate] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
-  //   const { user: currentUser } = useAuthStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -13,8 +13,6 @@ import NotFound from "./pages/NotFound";
 import OAuthSuccess from "./pages/OAuthSuccess";
 import useAuthStore from "./store/useAuthStore";
 
-// import CreateChallengeModal from "./components/CreateChallenge";
-
 import RouteGuard from "./components/RouteGuard";
 import { Toaster } from "react-hot-toast";
 
