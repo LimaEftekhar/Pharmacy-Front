@@ -7,7 +7,7 @@ const NotFound = () => {
 return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 via-white to-gray-50 p-6">
       <div className="max-w-2xl w-full bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl border border-white/30 p-8 relative">
-        <div className="absolute -top-12 -left-12 w-36 h-36 bg-green-400/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-12 -left-12 w-36 h-36 bg-blue-400/20 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-12 -right-12 w-44 h-44 bg-blue-400/20 rounded-full blur-3xl pointer-events-none" />
 
         <div className="text-center relative z-10">
@@ -28,7 +28,7 @@ return (
 
             <button
               onClick={() => navigate("/dashboard")}
-              className="px-4 py-2 rounded-xl bg-green-600 text-white shadow-md hover:bg-green-700 transition"
+              className="px-4 py-2 rounded-xl bg-blue-600 text-white shadow-md hover:bg-blue-700 transition"
             >
               Go to dashboard
             </button>

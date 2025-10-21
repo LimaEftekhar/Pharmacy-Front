@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate  } from "react-router-dom";
 import { useEffect } from "react";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -57,6 +57,7 @@ function App() {
               </RouteGuard>
             }
           /> */}
+          <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

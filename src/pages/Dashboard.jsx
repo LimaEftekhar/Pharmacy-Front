@@ -244,13 +244,17 @@ export default function Dashboard() {
                   setModal(null);
                   fetchMedicines();
                 }}
+                onUpdated={fetchMedicines}
               />
             </Modal>
           )}
 
           {modal === "details" && (
             <Modal onClose={() => setModal(null)}>
-              <MedicineDetails onClose={() => setModal(null)} />
+              <MedicineDetails
+                onClose={() => setModal(null)}
+                onUpdated={fetchMedicines}
+              />
             </Modal>
           )}
           {/* Footer */}

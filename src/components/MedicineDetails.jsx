@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { getData, deleteData } from "../util";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash, FaSearch } from "react-icons/fa";
 import EditMedicineModal from "./EditMedicineModal.jsx";
 
-export default function MedicineDetails({ onClose }) {
+export default function MedicineDetails({ onClose, onUpdated }) {
   const [medicines, setMedicines] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [editMedicine, setEditMedicine] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const fetchMedicines = async () => {
     try {
@@ -21,6 +22,15 @@ export default function MedicineDetails({ onClose }) {
     }
   };
 
+  //Search medicine
+  const filteredMedicines = medicines.filter((m) => {
+    const query = searchTerm.toLowerCase();
+    return (
+      m.name.toLowerCase().includes(query) ||
+      m.medicineCode.toLowerCase().includes(query)
+    );
+  });
+
   useEffect(() => {
     fetchMedicines();
   }, []);
@@ -31,6 +41,7 @@ export default function MedicineDetails({ onClose }) {
     try {
       await deleteData(`/medicines/${id}`);
       setMedicines((prev) => prev.filter((m) => m._id !== id));
+      onUpdated && onUpdated(); //refresh Dashboard stats
     } catch (err) {
       console.error(err);
       alert("Failed to delete medicine");
@@ -59,72 +70,95 @@ export default function MedicineDetails({ onClose }) {
         ) : !medicines || medicines.length === 0 ? (
           <p className="text-center text-gray-500">No medicines found.</p>
         ) : (
-          <div className="max-h-[60vh] overflow-y-auto rounded-xl border border-gray-200 shadow-inner">
-            <table className="min-w-full border-collapse">
-              <thead className="bg-gray-100 sticky top-0 text-gray-700">
-                <tr>
-                  <th className="px-4 py-3 text-left font-semibold text-sm">
-                    Code
-                  </th>
-                  <th className="px-4 py-3 text-left font-semibold text-sm">
-                    Name
-                  </th>
-                  <th className="px-4 py-3 text-left font-semibold text-sm">
-                    Cost
-                  </th>
-                  <th className="px-4 py-3 text-left font-semibold text-sm">
-                    Price
-                  </th>
-                  <th className="px-4 py-3 text-left font-semibold text-sm">
-                    Qty
-                  </th>
-                  <th className="px-4 py-3 text-left font-semibold text-sm">
-                    Expires
-                  </th>
-                  <th className="px-4 py-3 text-center font-semibold text-sm">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 text-sm">
-                {medicines.map((m) => (
-                  <tr key={m._id} className="hover:bg-gray-50 transition">
-                    <td className="px-4 py-3">{m.medicineCode}</td>
-                    <td className="px-4 py-3 font-medium text-gray-800">
-                      {m.name}
-                    </td>
-                    <td className="px-4 py-3">${m.costPrice}</td>
-                    <td className="px-4 py-3">${m.sellingPrice}</td>
-                    <td className="px-4 py-3">{m.quantity}</td>
-                    <td className="px-4 py-3 text-gray-600">
-                      {new Date(m.expirationDate).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                        timeZone: "UTC", // Prevent timezone shift
-                      })}
-                    </td>
-                    <td className="px-4 py-3 flex justify-center gap-4">
-                      <button
-                        onClick={() => setEditMedicine(m)}
-                        className="text-blue-600 hover:text-blue-800"
-                        title="Edit"
-                      >
-                        <FaEdit />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(m._id)}
-                        className="text-red-600 hover:text-red-800"
-                        title="Delete"
-                      >
-                        <FaTrash />
-                      </button>
-                    </td>
+          <>
+            <div className="relative w-full sm-w-80 mb-4">
+              <span className="absolute inset-y-0 left-3 flex items-center text-gray-400">
+                <FaSearch />
+              </span>
+              <input
+                type="text"
+                placeholder="Search by name or code..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div className="max-h-[60vh] overflow-y-auto rounded-xl border border-gray-200 shadow-inner">
+              {filteredMedicines.length > 0 ? (
+              <table className="min-w-full border-collapse">
+                <thead className="bg-gray-100 sticky top-0 text-gray-700">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-semibold text-sm">
+                      Code
+                    </th>
+                    <th className="px-4 py-3 text-left font-semibold text-sm">
+                      Name
+                    </th>
+                    <th className="px-4 py-3 text-left font-semibold text-sm">
+                      Cost
+                    </th>
+                    <th className="px-4 py-3 text-left font-semibold text-sm">
+                      Price
+                    </th>
+                    <th className="px-4 py-3 text-left font-semibold text-sm">
+                      Qty
+                    </th>
+                    <th className="px-4 py-3 text-left font-semibold text-sm">
+                      Expires
+                    </th>
+                    <th className="px-4 py-3 text-center font-semibold text-sm">
+                      Actions
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-gray-200 text-sm">
+                  {filteredMedicines.map((m) => (
+                    <tr key={m._id} className="hover:bg-gray-50 transition">
+                      <td className="px-4 py-3">{m.medicineCode}</td>
+                      <td className="px-4 py-3 font-medium text-gray-800">
+                        {m.name}
+                      </td>
+                      <td className="px-4 py-3">${m.costPrice}</td>
+                      <td className="px-4 py-3">${m.sellingPrice}</td>
+                      <td className="px-4 py-3">{m.quantity}</td>
+                      <td className="px-4 py-3 text-gray-600">
+                        {new Date(m.expirationDate).toLocaleDateString(
+                          "en-US",
+                          {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                            timeZone: "UTC", // Prevent timezone shift
+                          }
+                        )}
+                      </td>
+                      <td className="px-4 py-3 flex justify-center gap-4">
+                        <button
+                          onClick={() => setEditMedicine(m)}
+                          className="text-blue-600 hover:text-blue-800"
+                          title="Edit"
+                        >
+                          <FaEdit />
+                        </button>
+                        <button
+                          onClick={() => handleDelete(m._id)}
+                          className="text-red-600 hover:text-red-800"
+                          title="Delete"
+                        >
+                          <FaTrash />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              ): (
+  <p className="text-center text-gray-500 py-4">
+    No medicines found matching “{searchTerm}”
+  </p>
+)}
+            </div>
+          </>
         )}
 
         {/* Edit Modal */}
@@ -132,7 +166,10 @@ export default function MedicineDetails({ onClose }) {
           <EditMedicineModal
             medicine={editMedicine}
             onClose={() => setEditMedicine(null)}
-            onUpdated={fetchMedicines}
+            onUpdated={() => {
+              fetchMedicines(); // refresh local table
+              onUpdated && onUpdated(); // also refresh Dashboard
+            }}
           />
         )}
       </div>
