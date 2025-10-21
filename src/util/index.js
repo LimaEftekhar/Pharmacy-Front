@@ -14,7 +14,7 @@ API.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 // GET with params
@@ -50,7 +50,7 @@ const postData = async (endpoint, body = {}, config = {}) => {
     const headers = {
       ...config.headers,
       "Content-Type": "application/json",
-      ...(token && { Authorization: `Bearer ${token}` }), 
+      ...(token && { Authorization: `Bearer ${token}` }),
     };
     const res = await API.post(endpoint, body, { ...config, headers });
     return res.data;
@@ -89,4 +89,3 @@ const deleteData = async (endpoint) => {
 };
 
 export { API, getData, getAllData, postData, patchData, deleteData };
-

@@ -1,8 +1,5 @@
-import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { React, useState } from "react";
 import { postData } from "../util/index";
-import Select from "react-select";
-// import useAuthStore from "../store/useAuthStore";
 
 const AddMedicineModal = ({ onClose, onMedicineAdded }) => {
   // const navigate = useNavigate();

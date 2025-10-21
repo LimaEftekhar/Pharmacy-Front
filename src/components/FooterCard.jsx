@@ -1,4 +1,4 @@
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import React from "react";
 
 const FooterCard = () => {
   const currentYear = new Date().getFullYear();
@@ -17,9 +17,7 @@ const FooterCard = () => {
           <h2 className="text-sm font-bold text-blue-500">
             Pharmacy Management System
           </h2>
-          <p className="text-sm mt-1">
-            © {currentYear} Lima Eftekhar
-          </p>
+          <p className="text-sm mt-1">© {currentYear} Lima Eftekhar</p>
         </div>
       </div>
     </footer>

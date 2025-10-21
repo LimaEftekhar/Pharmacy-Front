@@ -51,7 +51,7 @@ export default function Dashboard() {
   const toDateOnlyUTC = (date) => {
     const d = new Date(date);
     return new Date(
-      Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())
+      Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()),
     );
   };
 
@@ -199,7 +199,7 @@ export default function Dashboard() {
                               month: "short",
                               day: "numeric",
                               timeZone: "UTC", // Prevent timezone shift
-                            }
+                            },
                           )}
                         </span>
                       </li>

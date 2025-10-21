@@ -85,78 +85,78 @@ export default function MedicineDetails({ onClose, onUpdated }) {
             </div>
             <div className="max-h-[60vh] overflow-y-auto rounded-xl border border-gray-200 shadow-inner">
               {filteredMedicines.length > 0 ? (
-              <table className="min-w-full border-collapse">
-                <thead className="bg-[#2563eb] sticky top-0 text-white">
-                  <tr>
-                    <th className="px-4 py-3 text-left font-semibold text-sm">
-                      Code
-                    </th>
-                    <th className="px-4 py-3 text-left font-semibold text-sm">
-                      Name
-                    </th>
-                    <th className="px-4 py-3 text-left font-semibold text-sm">
-                      Cost
-                    </th>
-                    <th className="px-4 py-3 text-left font-semibold text-sm">
-                      Price
-                    </th>
-                    <th className="px-4 py-3 text-left font-semibold text-sm">
-                      Qty
-                    </th>
-                    <th className="px-4 py-3 text-left font-semibold text-sm">
-                      Expires
-                    </th>
-                    <th className="px-4 py-3 text-center font-semibold text-sm">
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 text-sm">
-                  {filteredMedicines.map((m) => (
-                    <tr key={m._id} className="hover:bg-gray-50 transition">
-                      <td className="px-4 py-3">{m.medicineCode}</td>
-                      <td className="px-4 py-3 font-medium text-gray-800">
-                        {m.name}
-                      </td>
-                      <td className="px-4 py-3">${m.costPrice}</td>
-                      <td className="px-4 py-3">${m.sellingPrice}</td>
-                      <td className="px-4 py-3">{m.quantity}</td>
-                      <td className="px-4 py-3 text-gray-600">
-                        {new Date(m.expirationDate).toLocaleDateString(
-                          "en-US",
-                          {
-                            year: "numeric",
-                            month: "short",
-                            day: "numeric",
-                            timeZone: "UTC", // Prevent timezone shift
-                          }
-                        )}
-                      </td>
-                      <td className="px-4 py-3 flex justify-center gap-4">
-                        <button
-                          onClick={() => setEditMedicine(m)}
-                          className="text-blue-600 hover:text-blue-800"
-                          title="Edit"
-                        >
-                          <FaEdit />
-                        </button>
-                        <button
-                          onClick={() => handleDelete(m._id)}
-                          className="text-red-600 hover:text-red-800"
-                          title="Delete"
-                        >
-                          <FaTrash />
-                        </button>
-                      </td>
+                <table className="min-w-full border-collapse">
+                  <thead className="bg-[#2563eb] sticky top-0 text-white">
+                    <tr>
+                      <th className="px-4 py-3 text-left font-semibold text-sm">
+                        Code
+                      </th>
+                      <th className="px-4 py-3 text-left font-semibold text-sm">
+                        Name
+                      </th>
+                      <th className="px-4 py-3 text-left font-semibold text-sm">
+                        Cost
+                      </th>
+                      <th className="px-4 py-3 text-left font-semibold text-sm">
+                        Price
+                      </th>
+                      <th className="px-4 py-3 text-left font-semibold text-sm">
+                        Qty
+                      </th>
+                      <th className="px-4 py-3 text-left font-semibold text-sm">
+                        Expires
+                      </th>
+                      <th className="px-4 py-3 text-center font-semibold text-sm">
+                        Actions
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-              ): (
-  <p className="text-center text-gray-500 py-4">
-    No medicines found matching “{searchTerm}”
-  </p>
-)}
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 text-sm">
+                    {filteredMedicines.map((m) => (
+                      <tr key={m._id} className="hover:bg-gray-50 transition">
+                        <td className="px-4 py-3">{m.medicineCode}</td>
+                        <td className="px-4 py-3 font-medium text-gray-800">
+                          {m.name}
+                        </td>
+                        <td className="px-4 py-3">${m.costPrice}</td>
+                        <td className="px-4 py-3">${m.sellingPrice}</td>
+                        <td className="px-4 py-3">{m.quantity}</td>
+                        <td className="px-4 py-3 text-gray-600">
+                          {new Date(m.expirationDate).toLocaleDateString(
+                            "en-US",
+                            {
+                              year: "numeric",
+                              month: "short",
+                              day: "numeric",
+                              timeZone: "UTC", // Prevent timezone shift
+                            },
+                          )}
+                        </td>
+                        <td className="px-4 py-3 flex justify-center gap-4">
+                          <button
+                            onClick={() => setEditMedicine(m)}
+                            className="text-blue-600 hover:text-blue-800"
+                            title="Edit"
+                          >
+                            <FaEdit />
+                          </button>
+                          <button
+                            onClick={() => handleDelete(m._id)}
+                            className="text-red-600 hover:text-red-800"
+                            title="Delete"
+                          >
+                            <FaTrash />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <p className="text-center text-gray-500 py-4">
+                  No medicines found matching “{searchTerm}”
+                </p>
+              )}
             </div>
           </>
         )}
