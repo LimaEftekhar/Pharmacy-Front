@@ -1,11 +1,7 @@
-import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { React, useState } from "react";
 import { postData } from "../util/index";
-import Select from "react-select";
-// import useAuthStore from "../store/useAuthStore";
 
 const AddMedicineModal = ({ onClose, onMedicineAdded }) => {
-  // const navigate = useNavigate();
   const [medicineCode, setMedicineCode] = useState("");
   const [name, setName] = useState("");
   const [costPrice, setCostPrice] = useState("");
@@ -14,8 +10,6 @@ const AddMedicineModal = ({ onClose, onMedicineAdded }) => {
   const [expirationDate, setExpirationDate] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
-//   const { user: currentUser } = useAuthStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +27,7 @@ const AddMedicineModal = ({ onClose, onMedicineAdded }) => {
       return;
     }
 
-     if (!name.trim()) {
+    if (!name.trim()) {
       setError("Medicine name is required");
       setLoading(false);
       return;
@@ -44,7 +38,7 @@ const AddMedicineModal = ({ onClose, onMedicineAdded }) => {
       return;
     }
 
-     if (!costPrice || costPrice < 0) {
+    if (!costPrice || costPrice < 0) {
       setError("Please enter a cost price greater than 0");
       setLoading(false);
       return;
@@ -69,26 +63,17 @@ const AddMedicineModal = ({ onClose, onMedicineAdded }) => {
     const expDate = new Date(expirationDate);
 
     if (isNaN(expDate.getTime())) {
-    setError("Invalid expiration date format");
-    setLoading(false);
-    return;
+      setError("Invalid expiration date format");
+      setLoading(false);
+      return;
     }
 
     if (expDate <= today) {
-    setError("Expiration date must be in the future");
-    setLoading(false);
-    return;
+      setError("Expiration date must be in the future");
+      setLoading(false);
+      return;
     }
-    // if (!duration || duration < 1 || duration > 10) {
-    //   setError("Please set a duration between 1 and 10 days");
-    //   setLoading(false);
-    //   return;
-    // }
-    // if (invited.length === 0) {
-    //   setError("Please select at least one friend to invite!");
-    //   setLoading(false);
-    //   return;
-    // }
+
     try {
       const data = {
         medicineCode,
@@ -96,7 +81,7 @@ const AddMedicineModal = ({ onClose, onMedicineAdded }) => {
         costPrice: Number(costPrice),
         sellingPrice: Number(sellingPrice),
         quantity: Number(quantity),
-        expirationDate: Date(expirationDate),
+        expirationDate: new Date(`${expirationDate}T00:00:00Z`),
       };
       const res = await postData("/medicines", data);
       console.log(res);
@@ -196,7 +181,6 @@ const AddMedicineModal = ({ onClose, onMedicineAdded }) => {
             className="w-full p-3 rounded-xl bg-white/80 border border-gray-200 shadow-sm 
                        focus:ring-2 focus:ring-blue-400 focus:scale-[1.02] transition"
           />
-
 
           <input
             type="date"

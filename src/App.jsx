@@ -1,4 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { useEffect } from "react";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -6,8 +12,6 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import OAuthSuccess from "./pages/OAuthSuccess";
 import useAuthStore from "./store/useAuthStore";
-
-// import CreateChallengeModal from "./components/CreateChallenge";
 
 import RouteGuard from "./components/RouteGuard";
 import { Toaster } from "react-hot-toast";
@@ -49,14 +53,8 @@ function App() {
               </RouteGuard>
             }
           />
-          {/* <Route
-            path="/challenge/new"
-            element={
-              <RouteGuard requiresAuth={true}>
-                <CreateChallengeModal />
-              </RouteGuard>
-            }
-          /> */}
+        
+          <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

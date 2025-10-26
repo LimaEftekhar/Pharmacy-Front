@@ -1,18 +1,20 @@
-import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import useAuthStore from '../store/useAuthStore';
+
+import {React, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import useAuthStore from "../store/useAuthStore";
 
 const Register = () => {
   const navigate = useNavigate();
-  const { register, isLoading, error, clearError, isAuthenticated } = useAuthStore();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const { register, isLoading, error, clearError, isAuthenticated  } =
+    useAuthStore();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/dashboard', { replace: true });
+      navigate("/dashboard", { replace: true });
     }
   }, [isAuthenticated, navigate]);
 
@@ -20,38 +22,38 @@ const Register = () => {
     e.preventDefault();
     clearError(); // Clear previous errors before validation
     if (password !== confirmPassword) {
-      useAuthStore.getState().setError('Passwords do not match');
+      useAuthStore.getState().setError("Passwords do not match");
       return;
     }
     if (password.length < 6) {
-      useAuthStore.getState().setError('Password must be at least 6 characters long');
+      useAuthStore
+        .getState()
+        .setError("Password must be at least 6 characters long");
       return;
     }
     try {
-      console.log('Registering user with:', { name: name.trim(), email: email.trim().toLowerCase() });
+      console.log("Registering user with:", {
+        name: name.trim(),
+        email: email.trim().toLowerCase(),
+      });
       await register({
         name: name.trim(),
         email: email.trim().toLowerCase(),
         password,
       });
-      navigate('/dashboard', { replace: true }); 
+      navigate("/login", { replace: true });
     } catch (err) {
-      console.error('Register failed:', err.message);
+      console.error("Register failed:", err.message);
     }
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'name') setName(value);
-    if (name === 'email') setEmail(value);
-    if (name === 'password') setPassword(value);
-    if (name === 'confirmPassword') setConfirmPassword(value);
+    if (name === "name") setName(value);
+    if (name === "email") setEmail(value);
+    if (name === "password") setPassword(value);
+    if (name === "confirmPassword") setConfirmPassword(value);
   };
-
-  // const handleGoogleLogin = () => {
-  //   console.log('Initiating Google login'); 
-  //   window.location.href = `${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/google`;
-  // };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-200 via-gray-100 to-gray-300 relative overflow-hidden">
@@ -120,7 +122,7 @@ const Register = () => {
             disabled={isLoading}
             className="w-full bg-blue-600 text-white py-3 rounded-xl shadow-md hover:bg-blue-700 hover:scale-[1.01] transition disabled:opacity-60"
           >
-            {isLoading ? 'Creating account...' : 'Start now'}
+            {isLoading ? "Creating account..." : "Start now"}
           </button>
         </form>
         <div className="flex items-center my-6 relative z-10">
@@ -128,19 +130,9 @@ const Register = () => {
           <span className="px-2 text-gray-500 text-sm">or</span>
           <hr className="flex-grow border-gray-300" />
         </div>
-        {/* <button
-          onClick={handleGoogleLogin}
-          className="w-full flex items-center justify-center gap-2 border border-gray-200 py-3 rounded-xl bg-white/80 hover:bg-gray-100 shadow-sm transition relative z-10"
-        >
-          <img
-            src="https://www.svgrepo.com/show/355037/google.svg"
-            alt="Google logo"
-            className="w-5 h-5"
-          />
-          Continue with Google
-        </button> */}
+        
         <p className="mt-6 text-center text-sm text-black relative z-10">
-          Already have an account?{' '}
+          Already have an account?{" "}
           <Link to="/login" className="text-blue-600 hover:underline">
             Sign in
           </Link>
