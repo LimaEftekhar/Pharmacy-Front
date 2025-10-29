@@ -68,10 +68,8 @@ ________________________________________________________________________________
 
  ## **Screenshots**
 
-![Register Page](src/assets/1-register.png)
-![Login Page](src/assets/2-login.png)
+![Register Page](src/assets/1-register.png); ![Login Page](src/assets/2-login.png); ![Add Medicine](src/assets/4-Add-medicine.png)
 ![Dashboard](src/assets/3-dashboard.png)
-![Add Medicine](src/assets/4-Add-medicine.png)
 ![Medicine Details](src/assets/5-Medicine-details.png)
 
 
