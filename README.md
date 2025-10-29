@@ -68,10 +68,10 @@ ________________________________________________________________________________
 
 ## **Screenshots**
 
-<div style="display: flex; gap: 1rem; justify-content: center;">
-  <img src="src/assets/1-register.png" alt="Register Page" style="width: 100%; max-width: 320px; object-fit: cover;" />
-  <img src="src/assets/2-login.png" alt="Login Page" style="width: 100%; max-width: 320px; object-fit: cover;" />
-  <img src="src/assets/4-Add-medicine.png" alt="Add Medicine" style="width: 100%; max-width: 320px; object-fit: cover;" />
+<div style="display: flex; justify-content: center; align-items: stretch; width: 100%;">
+  <img src="src/assets/1-register.png" alt="Register Page" style="flex:1; width:33.33%; object-fit:cover; margin:0; padding:0;" />
+  <img src="src/assets/2-login.png" alt="Login Page" style="flex:1; width:33.33%; object-fit:cover; margin:0; padding:0;" />
+  <img src="src/assets/4-Add-medicine.png" alt="Add Medicine" style="flex:1; width:33.33%; object-fit:cover; margin:0; padding:0;" />
 </div>
 
 ![Dashboard](src/assets/3-dashboard.png)
