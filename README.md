@@ -66,9 +66,14 @@ ________________________________________________________________________________
 - Use the app to keep your pharmacy organized and your records accurate
 
 
- ## **Screenshots**
+## **Screenshots**
 
-![Register Page](src/assets/1-register.png); ![Login Page](src/assets/2-login.png); ![Add Medicine](src/assets/4-Add-medicine.png)
+<div style="display: flex; gap: 10px;">
+  <img src="src/assets/1-register.png" alt="Register Page" width="250"/>
+  <img src="src/assets/2-login.png" alt="Login Page" width="250"/>
+  <img src="src/assets/4-Add-medicine.png" alt="Add Medicine" width="250"/>
+</div>
+
 ![Dashboard](src/assets/3-dashboard.png)
 ![Medicine Details](src/assets/5-Medicine-details.png)
 
