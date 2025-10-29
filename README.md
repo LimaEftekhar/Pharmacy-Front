@@ -59,8 +59,8 @@ Search, edit, or delete medicines as needed
 Use the app to keep your pharmacy organized and your records accurate
 
 
- src\assets\register.png
- src/assets/login.png
- src/assets/dashboard.png
- src/assets/Add-medicine.png
- src/assets/Medicine-details.png
+ src\assets\1-register.png
+ src/assets/2-login.png
+ src/assets/3-dashboard.png
+ src/assets/4-Add-medicine.png
+ src/assets/5-Medicine-details.png
