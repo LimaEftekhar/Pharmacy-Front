@@ -46,13 +46,14 @@ ________________________________________________________________________________
 
 ## **Setup**
 
-- Clone the Repository: Clone this repository to your local machine.
-- Install Dependencies: Run npm install to install required packages.
-- Create a .env File: Create a .env file in the root directory and add the following variable:
-  VITE_BACKEND_URL=http://localhost:3000
-- Start the Development Server: Run npm run dev to start the application locally on localhost:5173.
-- Explore the Application: Register an account and explore features such as the dashboard, add a new medicine, and medicine details.
-- Ensure the back-end server is running as per the instructions in my Back-End Repository https://github.com/LimaEftekhar/Pharmacy.
+- **Clone the Repository**: Clone this repository to your local machine.
+- **Install Dependencies**: Run npm install to install required packages.
+- **Create a .env File**: Create a .env file in the root directory and add the following variable:
+   - VITE_BACKEND_URL=http://localhost:3000
+- **Start the Development Server**: Run npm run dev to start the application locally on localhost:5173.
+- **Explore the Application**: Register an account and explore features such as the dashboard, add a new medicine, and view medicine details.
+- Ensure the back-end server is running as per the instructions in my Back-End Repository
+   - https://github.com/LimaEftekhar/Pharmacy.
 
 ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -63,3 +64,5 @@ ________________________________________________________________________________
 - View the dashboard to monitor stock levels and upcoming expirations
 - Search, edit, or delete medicines as needed
 - Use the app to keep your pharmacy organized and your records accurate
+
+
