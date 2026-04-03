@@ -19,7 +19,7 @@ const useAuthStore = create((set) => ({
         `${BASE_URL}/api/v1/auth/register`,
         userData,
         {
-          timeout: 5000,
+          timeout: 20000,
         },
       );
       set({
@@ -43,7 +43,7 @@ const useAuthStore = create((set) => ({
     set({ isLoading: true, error: null });
     try {
       const res = await axios.post(`${BASE_URL}/api/v1/auth/login`, userData, {
-        timeout: 5000,
+        timeout: 20000,
       });
       set({
         user: res.data.user,
@@ -87,7 +87,7 @@ const useAuthStore = create((set) => ({
     try {
       const res = await axios.get(`${BASE_URL}/api/v1/auth/check-auth`, {
         headers: { Authorization: `Bearer ${token}` },
-        timeout: 5000,
+        timeout: 20000,
       });
       console.log("checkAuth response:", res.data);
       set({
@@ -123,7 +123,7 @@ const useAuthStore = create((set) => ({
         {},
         {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
-          timeout: 5000,
+          timeout: 20000,
         },
       );
     } catch (error) {
