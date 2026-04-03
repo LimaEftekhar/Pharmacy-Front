@@ -5,6 +5,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import axios from "axios"; //added recently
 import { useEffect } from "react";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -20,6 +21,19 @@ function App() {
   const checkAuth = useAuthStore((state) => state.checkAuth);
 
   useEffect(() => {
+    // Start: recently added: Wake up backend
+    const wakeServer = async () => {
+      try {
+        await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/health`);
+        console.log("Backend awake ✅");
+      } catch (err) {
+        console.warn("Backend not responding yet :", err.message);
+      }
+    };
+
+    wakeServer(); // call it immediately
+//End: recently added
+
     checkAuth();
   }, [checkAuth]);
 
