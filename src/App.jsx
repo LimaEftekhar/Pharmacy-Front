@@ -24,17 +24,20 @@ function App() {
     // Start: recently added: Wake up backend
     const wakeServer = async () => {
       try {
+        // Wait for backend to wake up
         await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/health`);
         console.log("Backend awake ✅");
+        // end recently: it moved form below line. Only AFTER backend is ready
+        await checkAuth();
       } catch (err) {
-        console.warn("Backend not responding yet :", err.message);
+        console.warn("Backend still waking up: ", err.message);
       }
     };
 
     wakeServer(); // call it immediately
-//End: recently added
+    //End: recently added
 
-    checkAuth();
+    // 2nd recently: it moved up before catch: checkAuth();
   }, [checkAuth]);
 
   return (
@@ -67,7 +70,7 @@ function App() {
               </RouteGuard>
             }
           />
-        
+
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
